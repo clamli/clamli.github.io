@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>LeetCode 004 简单的正则语言匹配器 | Clamli</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Qustion:Implement regular expression matching with support for ‘.’ and ‘*’. Examples:  isMatch(&amp;quot;aa&amp;quot;,&amp;quot;a&amp;quot;) → false isMatch(&amp;quot;aa&amp;quot;,&amp;quot;aa&amp;quot;) → true isMatch(&amp;quot;aaa&amp;quo">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 004 简单的正则语言匹配器">
+<meta property="og:url" content="http://clamli.github.io/2017/09/13/LeetCode-004-Regular-Expression-Matching/index.html">
+<meta property="og:site_name" content="Clamli">
+<meta property="og:description" content="Qustion:Implement regular expression matching with support for ‘.’ and ‘*’. Examples:  isMatch(&amp;quot;aa&amp;quot;,&amp;quot;a&amp;quot;) → false isMatch(&amp;quot;aa&amp;quot;,&amp;quot;aa&amp;quot;) → true isMatch(&amp;quot;aaa&amp;quo">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-08-31T23:35:18.153Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode 004 简单的正则语言匹配器">
+<meta name="twitter:description" content="Qustion:Implement regular expression matching with support for ‘.’ and ‘*’. Examples:  isMatch(&amp;quot;aa&amp;quot;,&amp;quot;a&amp;quot;) → false isMatch(&amp;quot;aa&amp;quot;,&amp;quot;aa&amp;quot;) → true isMatch(&amp;quot;aaa&amp;quo">
+  
+  
+    <link rel="icon" href="/images/favicon.jpg">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+  <link rel="stylesheet" href="/css/donate.css">
+  
+</head>
+</html>
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-LeetCode-004-Regular-Expression-Matching" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <header id="header" class="header">
+    <div class="mobile-nav">
+      <h1 class="nickname">Boyi Li</h1>
+      <a id="menu">
+        &#9776; Menu
+      </a>
+    </div>
+    
+        <nav id="main-nav" class="main-nav nav-left">
+    
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/projects">Projects</a>
+    
+      <a class="main-nav-link" href="/resume">Resume</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LeetCode 004 简单的正则语言匹配器
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h3 id="Qustion"><a href="#Qustion" class="headerlink" title="Qustion:"></a>Qustion:</h3><p>Implement regular expression matching with support for ‘.’ and ‘*’. <br><br>Examples:</p>
+<ul>
+<li><code>isMatch(&quot;aa&quot;,&quot;a&quot;) → false</code></li>
+<li><code>isMatch(&quot;aa&quot;,&quot;aa&quot;) → true</code></li>
+<li><code>isMatch(&quot;aaa&quot;,&quot;aa&quot;) → false</code><a id="more"></a></li>
+<li><code>isMatch(&quot;aa&quot;, &quot;a*&quot;) → true</code></li>
+<li><code>isMatch(&quot;aa&quot;, &quot;.*&quot;) → true</code></li>
+<li><code>isMatch(&quot;ab&quot;, &quot;.*&quot;) → true</code></li>
+<li><code>isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true</code></li>
+</ul>
+<hr>
+<h3 id="Coding"><a href="#Coding" class="headerlink" title="Coding:"></a>Coding:</h3><p>拿到这道题的时候会有一种似曾相识的感觉，在吴军所著的《代码之美》这本书里，曾经记录了一种简单的，使用递归实现的正则语言匹配器，作者是Rob Pike，他也是《The Practice of Programming》的作者。这个简单的正则语言匹配器用递归实现，具备基本的正则匹配功能：</p>
+<ul>
+<li>c 匹配任意的字母c</li>
+<li>.（句点） 匹配任意的单个字符</li>
+<li>^ 匹配输入字符串的开头</li>
+<li>$ 匹配输入字符串的结尾</li>
+<li>* 匹配前一个字符的零个或者多个出现</li>
+</ul>
+<p>而代码只有短短的三十几行：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">match</span><span class="params">(<span class="keyword">char</span> *regexp, <span class="keyword">char</span> *text)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (regexp[<span class="number">0</span>] == <span class="string">'^'</span>)</span><br><span class="line">		<span class="keyword">return</span> matchhere(regexp+<span class="number">1</span>, text);</span><br><span class="line">	<span class="keyword">do</span> &#123; <span class="comment">/* must look even if string is empty */</span></span><br><span class="line">		<span class="keyword">if</span> (matchhere(regexp, text))</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125; <span class="keyword">while</span> (*text++ != <span class="string">'\0'</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* matchhere: search for regexp at beginning of text */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">matchhere</span><span class="params">(<span class="keyword">char</span> *regexp, <span class="keyword">char</span> *text)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (regexp[<span class="number">0</span>] == <span class="string">'\0'</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (regexp[<span class="number">1</span>] == <span class="string">'*'</span>)</span><br><span class="line">		<span class="keyword">return</span> matchstar(regexp[<span class="number">0</span>], regexp+<span class="number">2</span>, text);</span><br><span class="line">	<span class="keyword">if</span> (regexp[<span class="number">0</span>] == <span class="string">'$'</span> &amp;&amp; regexp[<span class="number">1</span>] == <span class="string">'\0'</span>)</span><br><span class="line">		<span class="keyword">return</span> *text == <span class="string">'\0'</span>;</span><br><span class="line">	<span class="keyword">if</span> (*text!=<span class="string">'\0'</span> &amp;&amp; (regexp[<span class="number">0</span>]==<span class="string">'.'</span> || regexp[<span class="number">0</span>]==*text))</span><br><span class="line">		<span class="keyword">return</span> matchhere(regexp+<span class="number">1</span>, text+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* matchstar: search for c*regexp at beginning of text */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">matchstar</span><span class="params">(<span class="keyword">int</span> c, <span class="keyword">char</span> *regexp, <span class="keyword">char</span> *text)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">do</span> &#123; <span class="comment">/* a * matches zero or more instances */</span></span><br><span class="line">		<span class="keyword">if</span> (matchhere(regexp, text))</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125; <span class="keyword">while</span> (*text != <span class="string">'\0'</span> &amp;&amp; (*text++ == c || c == <span class="string">'.'</span>));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>参考这样的思路，一种利用递归实现的正则语言匹配器的算法是很容易想到的，因为leetcode上的题中需要考虑的情况更少，只有 . 和 * ，因此很容易想到如下的算法：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="keyword">char</span> *s, <span class="keyword">char</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (*p == <span class="string">'\0'</span>)</span><br><span class="line">		<span class="keyword">return</span> *s == <span class="string">'\0'</span>;</span><br><span class="line">	<span class="keyword">if</span> (*(p + <span class="number">1</span>) != <span class="string">'*'</span>)</span><br><span class="line">		<span class="keyword">return</span> *s != <span class="string">'\0'</span> &amp;&amp; ((*p == *s) || (*p == <span class="string">'.'</span>)) &amp;&amp; isMatch(s + <span class="number">1</span>, p + <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">do</span> &#123; <span class="comment">/* *(p+1) == '*' */</span></span><br><span class="line">		<span class="keyword">if</span> (isMatch(s, p + <span class="number">2</span>))</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125; <span class="keyword">while</span> (*s != <span class="string">'\0'</span> &amp;&amp; (*s++ == *p || *p == <span class="string">'.'</span>));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在最后的do/while中，当s子串和p+2对应的规则不再匹配，且s子串的起始位置不再和p中 * 前的字符相匹配时（s无法再后移起始位置）， 表示以无匹配情况，此时结束程序。这个递归算法的缺点在于时间复杂度和空间复杂度较高，如果存在很多 * 符号，会让每一层递归程序都不幸地跑在循环里，有可能出现指数级复杂度。上面的代码在leetcode上运行的时间是19ms。</p>
+<p>下面有一种动态规划的方法也能解决这个问题，且时间复杂度相对更好，运行实测时间是9ms。要用动态规划，我们首先要明白状态之间的关系。我们让dp[i][j]代表前i个字符和前j个规则是否匹配，这里有一个小点比较容易混淆，就是s[i-1]和p[j-1]代表第i个字符和第j个关系。<br>于是我们有了如下的关系：<br></p>
+<ul>
+<li><p>当第j个规则不是 <code>*</code> ：</p>
+<p>dp[i][j] = (i&gt;0) &amp;&amp; dp[i-1][j-1] &amp;&amp; ((p[ind_p-1] == <code>.</code>) || (p[ind_p-1] == s[ind_s-1]));</p>
+</li>
+<li><p>当第j个规则是 <code>*</code> ：</p>
+<p>dp[i][j] = dp[i][j-2] || ((i&gt;0) &amp;&amp; dp[i-1][j]  &amp;&amp; (s[ind_s-1] == p[ind_p-2] || p[ind_p-2] == <code>.</code>));</p>
+</li>
+</ul>
+<p>注：此处有两种情况，或者是(x*)整个不取，或者是取&gt;=1次。若是整个不取，则dp[i][j]的状态应该和(x*)之前的规则一致；若是取&gt;=1次，则dp[i][j]的状态应该综合考虑 前一个字符和当潜规则的状态 以及 当前字符是否能用(x*)表示。</p>
+<p>由此我们可以写出相应算法：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (ind_s = <span class="number">0</span>; ind_s &lt;= len_s; ind_s++) &#123;</span><br><span class="line">	<span class="keyword">for</span> (ind_p = <span class="number">1</span>; ind_p &lt;= len_p; ind_p++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (p[ind_p<span class="number">-1</span>] != <span class="string">'*'</span>) &#123;</span><br><span class="line">			dp[ind_s][ind_p] = ind_s&gt;<span class="number">0</span> &amp;&amp; dp[ind_s<span class="number">-1</span>][ind_p<span class="number">-1</span>] &amp;&amp; ((p[ind_p<span class="number">-1</span>] == <span class="string">'.'</span>) || (p[ind_p<span class="number">-1</span>] == s[ind_s<span class="number">-1</span>]));</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (p[ind_p<span class="number">-1</span>] == <span class="string">'*'</span>) &#123;</span><br><span class="line">			dp[ind_s][ind_p] = dp[ind_s][ind_p<span class="number">-2</span>] || (ind_s&gt;<span class="number">0</span> &amp;&amp; dp[ind_s<span class="number">-1</span>][ind_p] &amp;&amp; (s[ind_s<span class="number">-1</span>] == p[ind_p<span class="number">-2</span>] || p[ind_p<span class="number">-2</span>] == <span class="string">'.'</span>));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中len_s/len_p分别表示字符串和规则的长度，ind_s/ind_p分别表示当前dp的下标。这个方法要考虑的情况比较多，但是时间复杂度更优秀。</p>
+<p>完整代码可参见我的Github: <a href="https://github.com/clamli/leetcode/blob/master/RegularExprMatching.c" target="_blank" rel="noopener">RegularExprMatching.c</a></p>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h2><ul>
+<li><a href="https://book.douban.com/subject/3224524/" target="_blank" rel="noopener">代码之美</a></li>
+<li><a href="http://www.cnblogs.com/grandyang/p/4461713.html" target="_blank" rel="noopener">[LeetCode] Regular Expression Matching 正则表达式匹配 </a></li>
+</ul>
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/09/13/LeetCode-004-Regular-Expression-Matching/" class="article-date">
+  <time datetime="2017-09-13T05:36:29.000Z" itemprop="datePublished">2017-09-13</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+
+          </li>
+        
+        <hr>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2017/10/19/Spark-in-Python-安装和实例/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Spark in Python 安装和实例
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/02/LeetCode-003-的一点思考/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LeetCode 003 的一点思考</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr>
+      <div id="footerContent" class="footer-content">
+        <p>Fill what’s empty. Empty what’s full. Scratch where it itches.</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

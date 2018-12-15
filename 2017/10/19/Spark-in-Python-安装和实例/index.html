@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Spark in Python 安装和实例 | Clamli</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.1 介绍Spark是一个快速通用的集成计算系统，专门用于处理海量数据。Spark为Scala,Java,Python,R提供了大量丰富的接口。Spark主要包括四个工具集：Spark SQL用于处理SQL和DataFrames,MLlib用于机器学习函数实现，GraphX用于图形处理，Spark Streaming用于流处理。">
+<meta name="keywords" content="Python Windows Spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark in Python 安装和实例">
+<meta property="og:url" content="http://clamli.github.io/2017/10/19/Spark-in-Python-安装和实例/index.html">
+<meta property="og:site_name" content="Clamli">
+<meta property="og:description" content="1.1 介绍Spark是一个快速通用的集成计算系统，专门用于处理海量数据。Spark为Scala,Java,Python,R提供了大量丰富的接口。Spark主要包括四个工具集：Spark SQL用于处理SQL和DataFrames,MLlib用于机器学习函数实现，GraphX用于图形处理，Spark Streaming用于流处理。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-08-31T23:38:41.149Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark in Python 安装和实例">
+<meta name="twitter:description" content="1.1 介绍Spark是一个快速通用的集成计算系统，专门用于处理海量数据。Spark为Scala,Java,Python,R提供了大量丰富的接口。Spark主要包括四个工具集：Spark SQL用于处理SQL和DataFrames,MLlib用于机器学习函数实现，GraphX用于图形处理，Spark Streaming用于流处理。">
+  
+  
+    <link rel="icon" href="/images/favicon.jpg">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+  <link rel="stylesheet" href="/css/donate.css">
+  
+</head>
+</html>
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-Spark-in-Python-安装和实例" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <header id="header" class="header">
+    <div class="mobile-nav">
+      <h1 class="nickname">Boyi Li</h1>
+      <a id="menu">
+        &#9776; Menu
+      </a>
+    </div>
+    
+        <nav id="main-nav" class="main-nav nav-left">
+    
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/projects">Projects</a>
+    
+      <a class="main-nav-link" href="/resume">Resume</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spark in Python 安装和实例
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h3 id="1-1-介绍"><a href="#1-1-介绍" class="headerlink" title="1.1 介绍"></a>1.1 介绍</h3><p>Spark是一个快速通用的集成计算系统，专门用于处理海量数据。Spark为Scala,Java,Python,R提供了大量丰富的接口。Spark主要包括四个工具集：Spark SQL用于处理SQL和DataFrames,MLlib用于机器学习函数实现，GraphX用于图形处理，Spark Streaming用于流处理。<br><a id="more"></a></p>
+<h3 id="1-2-Spark安装-python-in-windows"><a href="#1-2-Spark安装-python-in-windows" class="headerlink" title="1.2 Spark安装 (python in windows)"></a>1.2 Spark安装 (python in windows)</h3><h4 id="1-2-1-下载GOW"><a href="#1-2-1-下载GOW" class="headerlink" title="1.2.1 下载GOW "></a>1.2.1 下载GOW <br></h4><p>下载链接：<a href="https://medium.com/@GalarnykMichael/install-spark-on-windows-pyspark-4498a5d8d66c" target="_blank" rel="noopener">https://medium.com/@GalarnykMichael/install-spark-on-windows-pyspark-4498a5d8d66c</a> <br><br>目的：在Windows下使用Linux命令</p>
+<h4 id="1-2-2-下载Anaconda"><a href="#1-2-2-下载Anaconda" class="headerlink" title="1.2.2 下载Anaconda "></a>1.2.2 下载Anaconda <br></h4><p>下载链接：<a href="https://www.anaconda.com/download/" target="_blank" rel="noopener">https://www.anaconda.com/download/</a> <br><br>目的：Python包管理工具</p>
+<h4 id="1-2-3-下载Spark"><a href="#1-2-3-下载Spark" class="headerlink" title="1.2.3 下载Spark "></a>1.2.3 下载Spark <br></h4><p>下载链接：<a href="http://spark.apache.org/downloads.html" target="_blank" rel="noopener">http://spark.apache.org/downloads.html</a> <br><br>下载完成后将Spark解压到你的目标文件夹内，如 D:\Spark\spark-2.2.0-bin-hadoop2.7</p>
+<h4 id="1-2-4-下载winutils-exe"><a href="#1-2-4-下载winutils-exe" class="headerlink" title="1.2.4 下载winutils.exe "></a>1.2.4 下载winutils.exe <br></h4><p>下载方式：在上述Spark目录中运行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -k -L -o winutils.exe https://github.com/steveloughran/winutils/blob/master/hadoop-2.6.0/bin/winutils.exe?raw=true</span><br></pre></td></tr></table></figure></p>
+<p>目的：有效解决hadoop在windows运行出现的bug </p>
+<h4 id="1-2-5-确定计算机上安装了Java-7-版本"><a href="#1-2-5-确定计算机上安装了Java-7-版本" class="headerlink" title="1.2.5 确定计算机上安装了Java 7+版本 "></a>1.2.5 确定计算机上安装了Java 7+版本 <br></h4><p>命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure></p>
+<h4 id="1-2-6-环境变量设置"><a href="#1-2-6-环境变量设置" class="headerlink" title="1.2.6 环境变量设置 "></a>1.2.6 环境变量设置 <br></h4><p>命令：永久设置环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setx SPARK_HOME D:\Spark\spark-2.2.0-bin-hadoop2.7</span><br><span class="line">setx HADOOP_HOME D:\Spark\spark-2.2.0-bin-hadoop2.7</span><br><span class="line">setx PYSPARK_DRIVER_PYTHON ipython</span><br><span class="line">setx PYSPARK_DRIVER_PYTHON_OPTS notebook</span><br></pre></td></tr></table></figure></p>
+<p>你也可以选择在Windows编辑环境变量的地方直接添加，效果是一样的。做完以上四句以后将 D:\Spark\spark-2.2.0-bin-hadoop2.7\bin 也加到环境变量中去。</p>
+<h4 id="1-2-7-运行PySpark"><a href="#1-2-7-运行PySpark" class="headerlink" title="1.2.7 运行PySpark "></a>1.2.7 运行PySpark <br></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyspark --master local[2]</span><br></pre></td></tr></table></figure>
+<p>在ipython notebook上双核运行pyspark。</p>
+<h4 id="1-2-8-Import-pyspark"><a href="#1-2-8-Import-pyspark" class="headerlink" title="1.2.8 Import pyspark "></a>1.2.8 Import pyspark <br></h4><p>做完以上步骤你会发现已经可以在ipython的交互环境下使用pyspark，但是当import pyspark的时候会发现出现错误 <em>ImportError: No module named ‘pyspark’</em>。这个时候就涉及到如何将PySpark导入Python的问题。</p>
+<p>解决方法：<br>打开文件夹 D:\Spark\spark-2.2.0-bin-hadoop2.7，看到里面有一个python的文件夹，我们要导入的lib文件就在这个文件夹里。进入D:\Spark\spark-2.2.0-bin-hadoop2.7\python\lib，里面有两个文件：</p>
+<ul>
+<li>py4j-0.10.4-src</li>
+<li>pyspark</li>
+</ul>
+<p>我们将这个路径添加到我们Python的包的路径即可。</p>
+<p>具体操作：打开C:\Python35\Lib\site-packages，在里面新建文件，后缀名为.pth，在里面加入D:\Spark\spark-2.2.0-bin-hadoop2.7\python\lib即可。</p>
+<h3 id="1-3-Example"><a href="#1-3-Example" class="headerlink" title="1.3 Example"></a>1.3 Example</h3><p>下载Spark的目的是为了用它做Matrix Factorization,提升代码运行的速度和效率，所以这里用MF做例子。Spark使用ALS训练Matrix,读入用户物品评分矩阵并转化为dataframe，然后在上面做Matrix Factorization。代码示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark.ml.evaluation <span class="keyword">import</span> RegressionEvaluator</span><br><span class="line"><span class="keyword">from</span> pyspark.ml.recommendation <span class="keyword">import</span> ALS</span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> Row</span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext</span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession</span><br><span class="line">spark = SparkSession.builder.master(<span class="string">"local[*]"</span>).appName(<span class="string">"Example"</span>).getOrCreate()</span><br><span class="line"></span><br><span class="line">lines = spark.read.text(<span class="string">"D:/GitCode/item_based_collaborative_filtering/test files/sample_movielens_ratings.txt"</span>).rdd</span><br><span class="line">parts = lines.map(<span class="keyword">lambda</span> row: row.value.split(<span class="string">"::"</span>))</span><br><span class="line">ratingsRDD = parts.map(<span class="keyword">lambda</span> p: Row(userId=int(p[<span class="number">0</span>]), movieId=int(p[<span class="number">1</span>]),</span><br><span class="line">                                     rating=float(p[<span class="number">2</span>]), timestamp=int(p[<span class="number">3</span>])))</span><br><span class="line">ratings = spark.createDataFrame(ratingsRDD)</span><br><span class="line">(training, test) = ratings.randomSplit([<span class="number">0.8</span>, <span class="number">0.2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build the recommendation model using ALS on the training data</span></span><br><span class="line"><span class="comment"># Note we set cold start strategy to 'drop' to ensure we don't get NaN evaluation metrics</span></span><br><span class="line">als = ALS(maxIter=<span class="number">5</span>, regParam=<span class="number">0.01</span>, userCol=<span class="string">"userId"</span>, itemCol=<span class="string">"movieId"</span>, ratingCol=<span class="string">"rating"</span>,</span><br><span class="line">          coldStartStrategy=<span class="string">"drop"</span>)</span><br><span class="line">model = als.fit(training)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluate the model by computing the RMSE on the test data</span></span><br><span class="line">predictions = model.transform(test)</span><br><span class="line">evaluator = RegressionEvaluator(metricName=<span class="string">"rmse"</span>, labelCol=<span class="string">"rating"</span>,</span><br><span class="line">                                predictionCol=<span class="string">"prediction"</span>)</span><br><span class="line">rmse = evaluator.evaluate(predictions)</span><br><span class="line">print(<span class="string">"Root-mean-square error = "</span> + str(rmse))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate top 10 movie recommendations for each user</span></span><br><span class="line">userRecs = model.recommendForAllUsers(<span class="number">10</span>)</span><br><span class="line"><span class="comment"># Generate top 10 user recommendations for each movie</span></span><br><span class="line">movieRecs = model.recommendForAllItems(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>里面使用的数据集和源代码可以在<a href="https://github.com/clamli/item_based_collaborative_filtering/tree/master/test%20files" target="_blank" rel="noopener">我的Github</a>上找到。</p>
+<hr>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接:"></a>参考链接:</h3><ul>
+<li><a href="https://medium.com/@GalarnykMichael/install-spark-on-windows-pyspark-4498a5d8d66c" target="_blank" rel="noopener">Install Spark on Windows (PySpark)</a> </li>
+<li><a href="http://spark.apache.org/docs/2.1.1/api/python/pyspark.mllib.html#pyspark.mllib.recommendation.ALS" target="_blank" rel="noopener">Spark MLlib to do Matrix Factorization</a></li>
+</ul>
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/10/19/Spark-in-Python-安装和实例/" class="article-date">
+  <time datetime="2017-10-20T03:11:02.000Z" itemprop="datePublished">2017-10-19</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python-Windows-Spark/">Python Windows Spark</a></li></ul>
+
+
+          </li>
+        
+        <hr>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/03/25/Leetcode-84-直方图中的最大矩形/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Leetcode 84 直方图中的最大矩形
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/13/LeetCode-004-Regular-Expression-Matching/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LeetCode 004 简单的正则语言匹配器</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr>
+      <div id="footerContent" class="footer-content">
+        <p>Fill what’s empty. Empty what’s full. Scratch where it itches.</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

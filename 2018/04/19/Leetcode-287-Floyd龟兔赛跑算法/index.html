@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Leetcode 287 Floyd龟兔赛跑算法 | Clamli</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Question:Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate n">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 287 Floyd龟兔赛跑算法">
+<meta property="og:url" content="http://clamli.github.io/2018/04/19/Leetcode-287-Floyd龟兔赛跑算法/index.html">
+<meta property="og:site_name" content="Clamli">
+<meta property="og:description" content="Question:Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate n">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-287/example.bmp">
+<meta property="og:updated_time" content="2018-08-31T23:42:03.716Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode 287 Floyd龟兔赛跑算法">
+<meta name="twitter:description" content="Question:Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate n">
+<meta name="twitter:image" content="http://clamli.github.io/images/LeetCode-287/example.bmp">
+  
+  
+    <link rel="icon" href="/images/favicon.jpg">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+  <link rel="stylesheet" href="/css/donate.css">
+  
+</head>
+</html>
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-Leetcode-287-Floyd龟兔赛跑算法" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <header id="header" class="header">
+    <div class="mobile-nav">
+      <h1 class="nickname">Boyi Li</h1>
+      <a id="menu">
+        &#9776; Menu
+      </a>
+    </div>
+    
+        <nav id="main-nav" class="main-nav nav-left">
+    
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/projects">Projects</a>
+    
+      <a class="main-nav-link" href="/resume">Resume</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Leetcode 287 Floyd龟兔赛跑算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h3 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h3><p>Given an array <em>nums</em> containing <em>n</em> + 1 integers where each integer is between 1 and <em>n</em> (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.</p>
+<a id="more"></a>
+<p><strong>Note:</strong></p>
+<ol>
+<li>You <strong>must not</strong> modify the array (assume the array is read only).</li>
+<li>You must use only constant, <em>O(1)</em> extra space.</li>
+<li>Your runtime complexity should be less than <em>O(n2)</em>.</li>
+<li>There is only one duplicate number in the array, but it could be repeated more than once.</li>
+</ol>
+<hr>
+<h3 id="Coding"><a href="#Coding" class="headerlink" title="Coding:"></a>Coding:</h3><p>如果没有<strong>Note</strong>里的几个要求，这题有很多解法，比如可以先排序然后找相同数字，或者利用<em>HashSet</em>寻找元素的时间复杂度为0(1)的特点将元素都放入<em>Set</em>中，直到发生碰撞。但是这些方法不是修改了原数组，就是空间复杂度不是常数，不满足题目要求。因此需要一个新的方法，也就是这一节提到的<em>Floyd’s Tortoise and Hare</em>，或者也叫<em>Floyd’s</em>判圈算法或是链表闭环判断（<em>Cycle Detection</em>）。</p>
+<p><em>Floyd’s</em>判圈算法通常设定两个指针，一个指针叫快指针，也可以叫兔子；另一个是慢指针，就是乌龟。兔指针每次能够走两个单位，以链表为例，就是每次可以指到当前节点的下下个节点；龟指针每次只能走一个单位，就是每次指到下一个节点。兔子和龟的起点相同，如果链表中有回环，兔子一定有再次和龟相遇的一天（追上）。如果链表中没有回环（兔指针走到头都没有和龟指针相遇），返回空；如果有回环，也即如果兔指针和龟指针相遇，返回有。</p>
+<ul>
+<li><p><strong>Hint:</strong>  <em>Floyd’s</em>判圈算法通常用于判断链表中是否有回环，通常分为两步，第一步是找到是否有回环，第二步是找到回环的起始入口。通常的数组没有链表的这种结构，不存在回环的说法，但是由于题中所给的数组下标范围<em>0 - n</em>，存储数据的范围在<em>1 - n</em>之间，因此可以用当前下标所存储元素表示当前节点，下标表示上一节点，下标和存储元素的关系其实就相当于链表中上一节点指向下一节点。则数组中的回环其实就是因为有相同的存储元素，即表示两个不同的上一节点指向了相同的当前节点。而回环的起点就是那个相同的元素。</p>
+</li>
+<li><p><strong>Example:</strong> </p>
+<p><img src="/images/LeetCode-287/example.bmp"></p>
+<p>如上图所示，这是一个带环的链表（链表中的节点都隐去了）。左边是链表的起始位置，右边是链表中的环。左边无环链的长度为<em>x1</em>，右边环周长为<em>C</em>​。</p>
+<ul>
+<li><strong>找是否有回环：</strong> 我们假设兔子和乌龟都从左边起始位置出发，当乌龟走到A时，兔子在环中B位置，这时兔子离环的起点A位置的距离是C-x2。我们让乌龟继续往前走到P点，P点离起点A的距离为C-x2，此时兔子走的路程为2*(C-x2)，也就是兔子先走到起点A，又走到P，兔子和乌龟华丽丽地相遇。</li>
+<li><strong>找到回环起点：</strong>我们已经找到了乌龟和兔子在P点相遇，P点到A点的距离为x2，链表起点到A点的距离为x1，由于x1+k*C+x2 = 2*x1，所以x1和x2同余C。那么我们设两个指针，一个指向链表开头，一个指向回环中的P点（相遇点）。两个指针每次循环更新为下一节点，它们一定会在回环起点A相遇。根据上面的分析，这个点对应的元素就是重复元素。</li>
+</ul>
+</li>
+<li><p><strong>Java code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> tortoise = <span class="number">0</span>, hare = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            tortoise = nums[tortoise];</span><br><span class="line">            hare = nums[nums[hare]];</span><br><span class="line">        &#125; <span class="keyword">while</span> (tortoise != hare);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> start1 = <span class="number">0</span>, start2 = tortoise;</span><br><span class="line">        <span class="keyword">while</span> (start1 != start2) &#123;</span><br><span class="line">            start1 = nums[start1];</span><br><span class="line">            start2 = nums[start2];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> start1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>源代码文件可参见我的Github: <a href="https://github.com/clamli/leetcode/blob/master/Array/Solution%20for%20Find%20the%20Duplicate%20Number.java" target="_blank" rel="noopener">Solution for Find the Duplicate Number.java</a></p>
+<hr>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h1><ul>
+<li><a href="https://en.wikipedia.org/wiki/Cycle_detection" target="_blank" rel="noopener">Cycle detection</a></li>
+<li><a href="https://leetcode.com/problems/find-the-duplicate-number/solution/" target="_blank" rel="noopener">Find the Duplicate Number</a></li>
+</ul>
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/04/19/Leetcode-287-Floyd龟兔赛跑算法/" class="article-date">
+  <time datetime="2018-04-19T16:53:17.000Z" itemprop="datePublished">2018-04-19</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+
+          </li>
+        
+        <hr>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/2018/03/25/Leetcode-84-直方图中的最大矩形/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Leetcode 84 直方图中的最大矩形</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr>
+      <div id="footerContent" class="footer-content">
+        <p>Fill what’s empty. Empty what’s full. Scratch where it itches.</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Projects | Clamli</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="#1 CALT CALT, collaborative active learning tree, is a recommender system proposed for cold-start item recommendation.In CALT, multiple decision trees are built with nodes associated with user cluste">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Projects">
+<meta property="og:url" content="http://clamli.github.io/projects/index_old.html">
+<meta property="og:site_name" content="Clamli">
+<meta property="og:description" content="#1 CALT CALT, collaborative active learning tree, is a recommender system proposed for cold-start item recommendation.In CALT, multiple decision trees are built with nodes associated with user cluste">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://clamli.github.io/images/Projects/CALT.jpg">
+<meta property="og:updated_time" content="2018-09-11T02:44:20.200Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Projects">
+<meta name="twitter:description" content="#1 CALT CALT, collaborative active learning tree, is a recommender system proposed for cold-start item recommendation.In CALT, multiple decision trees are built with nodes associated with user cluste">
+<meta name="twitter:image" content="http://clamli.github.io/images/Projects/CALT.jpg">
+  
+  
+    <link rel="icon" href="/images/favicon.jpg">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+  <link rel="stylesheet" href="/css/donate.css">
+  
+</head>
+</html>
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="page-" class="article article-type-page" itemscope="" itemprop="blogPost">
+  <header id="header" class="header">
+    <div class="mobile-nav">
+      <h1 class="nickname">Boyi Li</h1>
+      <a id="menu">
+        &#9776; Menu
+      </a>
+    </div>
+    
+        <nav id="main-nav" class="main-nav nav-left">
+    
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/projects">Projects</a>
+    
+      <a class="main-nav-link" href="/resume">Resume</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Projects
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <hr>
+<h3 id="1-CALT"><a href="#1-CALT" class="headerlink" title="#1 CALT"></a>#1 CALT</h3><p><img src="/images/Projects/CALT.jpg" alt=""></p>
+<p style="text-align:justify">CALT, collaborative active learning tree, is a recommender system proposed for cold-start item recommendation.<br><br>In CALT, multiple decision trees are built with nodes associated with user clusters. Starting from the root node, a new item is adaptively presented to different clusters of users according to query result from the previous user cluster. When no rating is elicited during the query, content-based collaborative filtering is employed to estimate the ratings.<br><br>CALT is distinguished by making use of both content information and queried rating to carry out more accurate recommendation for cold-start items.</p>
+
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="2-MiniSQL"><a href="#2-MiniSQL" class="headerlink" title="#2 MiniSQL"></a>#2 MiniSQL</h3><p style="text-align:justify">A small query tool implementing the basic functions of MySQL.<br><br>MiniSQL has a subset of commands of MySQL, including <em>INSERT</em>, <em>SELECT</em>, <em>DELETE</em>, <em>UPDATE</em>, <em>CREATE/DROP TABLE</em>, <em>CREATE/DROP INDEX</em>.<br><br>MiniSQL is mainly divided into six modules: interpreter, API, catalog manager, record manager, buffer manager and index manager. Interpreter is achieved by <em>Antlr4</em>, a powerful parser generator, and is used to analyze the input commands. Catalog manager helps to manage header information of tables. Record manager deals with all the records in a table and is tightly related with buffer manager, which is a small cache (blocks set) used to temporarily hold information and write them back to the disk or read them out from the disk whenever required. With the buffer, we can avoid constant operations of reading/writing data out from/into the disk and thus save time. Index manager is implemented by <em>B+ Tree</em>. It use a tree structure to sort chosen columns of tables so that future request for these data can be done in O(logN) time complexity, instead of O(N).  </p>
+
+
+
+<video width="700" height="400" align="left" id="video" controls preload="none"><br><br>​    <source id="mp4" src="/videos/MiniSQL/MiniSQL.mp4" type="video/mp4"><br><br></video>
+
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="3-RoomBreak"><a href="#3-RoomBreak" class="headerlink" title="# 3 RoomBreak"></a># 3 RoomBreak</h3><p style="text-align:justify">RoomBreak is a game implemented by C++ and the scene of the game is built by Maya.<br><br>This work mainly contains the modules for Scene import, View Control, Collision Detection, Click Event Control, Music Control, Light Control and Texture Control. Scene import module is used to import maya-built house and all the background items. View Control module is used to change the position when people move. Collision Detection module is based on the Cartesian coordinate system and it saves a set of coordinates to for each item in order to represent their border. Click Event Control module helps to change the scene whenever a click happens and music control determines the appropriate song for each stage. Light Control and Texture Control are based on the functions provided by Open Graphic Library (OpenGL) and they are used to render the scene and make it real.</p>
+
+<video width="700" height="400" align="left" id="video" controls preload="none"><br><br>​    <source id="mp4" src="/videos/CGProject/RoomBreak.mp4" type="video/mp4"><br><br></video>
+
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/projects/index_old.html" class="article-date">
+  <time datetime="2018-09-01T01:12:38.000Z" itemprop="datePublished">2018-08-31</time>
+</a>
+
+        </li>
+        
+        
+        <hr>
+      </ul>
+    </footer>
+  </div>
+  
+    
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr>
+      <div id="footerContent" class="footer-content">
+        <p>Fill what’s empty. Empty what’s full. Scratch where it itches.</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

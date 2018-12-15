@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Leetcode 84 直方图中的最大矩形 | Clamli</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Question:Given n non-negative integers representing the histogram’s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.   Above is a histogram where width">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 84 直方图中的最大矩形">
+<meta property="og:url" content="http://clamli.github.io/2018/03/25/Leetcode-84-直方图中的最大矩形/index.html">
+<meta property="og:site_name" content="Clamli">
+<meta property="og:description" content="Question:Given n non-negative integers representing the histogram’s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.   Above is a histogram where width">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/histogram.png">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/histogram_area.png">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/Situation1.png">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/Situation2.png">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/Situation3.png">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/example.png">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/Step1.png">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/Step2.png">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/Step3.png">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/Step4.png">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/Step5.png">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/Step6.png">
+<meta property="og:image" content="http://clamli.github.io/images/LeetCode-84/Step7.png">
+<meta property="og:updated_time" content="2018-08-31T23:44:38.494Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode 84 直方图中的最大矩形">
+<meta name="twitter:description" content="Question:Given n non-negative integers representing the histogram’s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.   Above is a histogram where width">
+<meta name="twitter:image" content="http://clamli.github.io/images/LeetCode-84/histogram.png">
+  
+  
+    <link rel="icon" href="/images/favicon.jpg">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+  <link rel="stylesheet" href="/css/donate.css">
+  
+</head>
+</html>
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-Leetcode-84-直方图中的最大矩形" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <header id="header" class="header">
+    <div class="mobile-nav">
+      <h1 class="nickname">Boyi Li</h1>
+      <a id="menu">
+        &#9776; Menu
+      </a>
+    </div>
+    
+        <nav id="main-nav" class="main-nav nav-left">
+    
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/projects">Projects</a>
+    
+      <a class="main-nav-link" href="/resume">Resume</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Leetcode 84 直方图中的最大矩形
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h3 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h3><p>Given n non-negative integers representing the histogram’s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.</p>
+<p><img src="/images/LeetCode-84/histogram.png" alt=""></p>
+<blockquote>
+<p>Above is a histogram where width of each bar is 1, given height = [2,1,5,6,2,3].<br><a id="more"></a></p>
+</blockquote>
+<p><img src="/images/LeetCode-84/histogram_area.png" alt=""></p>
+<blockquote>
+<p>The largest rectangle is shown in the shaded area, which has area = 10 unit.</p>
+</blockquote>
+<p>For example,<br>Given heights = [2,1,5,6,2,3],<br>return 10.</p>
+<hr>
+<h3 id="Coding"><a href="#Coding" class="headerlink" title="Coding:"></a>Coding:</h3><p>本题的最容易想到的解决方法是使用暴力枚举法，对每一个矩阵进行遍历，然后从以当前矩阵为结束的矩阵中找出最大的那个，作为局部最大值。遍历完所有矩阵，所存的最大的矩阵即为解答。该方法的时间复杂度为O(N^2)，正常提交无法通过LeetCode的测试用例 (Run Time Error)。</p>
+<p>这个问题常规的解法时间复杂度为O(N)，使用栈的特性，只要进行一遍遍历就可找出最大值。但是因为解决思路比较复杂，怕以后review代码的时候难以理解，遂记录，具体的解决思路从Youtube视频中学到，视频链接附在文末。</p>
+<p>本题的关键在于找出以下三种情况：</p>
+<ul>
+<li><p>情况1：<br><img src="/images/LeetCode-84/Situation1.png" width="100" height="150px"><br>如上图所示，两个矩阵相同时，最大矩阵其实就是两个矩阵的面积，此使我们只要存储前一矩阵的下标以记录这一高度的开始值。</p>
+</li>
+<li><p>情况2：<br><img src="/images/LeetCode-84/Situation2.png" width="100px" height="150px"><br>如上图所示，当前一个矩阵C比后一个矩阵D面积大时，C已经结束了，因为它不可能以本身的高和后面的矩阵构成更大的矩阵。因此我们不需要再存储它的信息。这时我们需要记录它能构成的最大面积——即它的下标与当前下标差（表明以这样的高度持续了多少个下标）乘它的高度。<strong>而接下来的那个小矩阵D，其实是从前一个矩阵C的内部开始的</strong>。这句话很重要，也是后面栈操作的关键。</p>
+</li>
+<li><p>情况3<br><img src="/images/LeetCode-84/Situation3.png" width="100px" height="150px"><br>如上图所示，当前一个矩阵E比后一个矩阵F面积小，则E还未结束（还可能以当前E的高和后面的矩阵结合生成新的大矩阵），因此它们的高度都要存储。</p>
+</li>
+</ul>
+<p>经过以上分析可以看出我们实际需要两个栈来进行存储，一个栈存储矩阵高度，一个栈存储矩阵下标。</p>
+<p>我们用以下的例子进行分析：</p>
+<p><img src="/images/LeetCode-84/example.png" width="225px" height="150px"><br>在上图中有5个矩阵，高度分别标在矩阵内部。</p>
+<ul>
+<li><p>Step 1<br><img src="/images/LeetCode-84/Step1.png" width="150px" height="225px"><br>此时第一个矩阵高度为1，栈为空，我们将其下标推入p栈，高度推入h栈。</p>
+</li>
+<li><p>Step 2<br><img src="/images/LeetCode-84/Step2.png" width="150px" height="225px"><br>第二个矩阵高度大于第一个矩阵，根据情况3，我们直接将其下标和高度分别推入栈中。</p>
+</li>
+<li><p>Step 3<br><img src="/images/LeetCode-84/Step3.png" width="150px" height="225px"><br>第三个矩阵高度小于第二个矩阵，根据情况2，我们将矩阵2弹出，计算3*(2-1) = 3并记录，然后将矩阵3放入栈中。此时，注意上面我们加粗的那句话，因为矩阵3是从矩阵2的内部开始的，因此下标保持不变。</p>
+</li>
+<li><p>Step 4<br><img src="/images/LeetCode-84/Step4.png" width="150px" height="225px"><br>这一步进行了很多操作，我们一个个来。首先是矩阵4的高度比矩阵3小，我们将矩阵3弹出，并计算2*(3-1) = 4，然后由于要放入栈中的矩阵4高度和当前栈中的矩阵2相同，我们放弃存入矩阵4并弹出矩阵3的位置记录。</p>
+</li>
+<li><p>Step 5<br><img src="/images/LeetCode-84/Step5.png" width="150px" height="225px"><br>接下来存入的矩阵5高度比栈顶矩阵高，因此根据情况3，我们继续压入矩阵和位置。</p>
+</li>
+<li><p>Step 6<br><img src="/images/LeetCode-84/Step6.png" width="150px" height="225px"><br>此时已经没有矩阵需要存入，我们要依次处理栈中剩余矩阵。首先把当前的矩阵5和其位置弹出，并计算2*(5-4)​，其中5表示后一个下标位置。</p>
+</li>
+<li><p>Step 7<br><img src="/images/LeetCode-84/Step7.png" width="150px" height="225px"><br>继续弹出矩阵1和其位置，并计算1*(5-0)。</p>
+</li>
+</ul>
+<p>最后，我们发现，最大的面积为5。</p>
+<p>具体代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(<span class="keyword">int</span>[] heights)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> index = <span class="number">0</span>, maxarea = <span class="number">0</span>;</span><br><span class="line">		Stack&lt;Integer&gt; S_h = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">		Stack&lt;Integer&gt; S_p = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">		<span class="keyword">if</span> (heights.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		S_h.push(heights[<span class="number">0</span>]);</span><br><span class="line">		S_p.push(<span class="number">0</span>);</span><br><span class="line">		index++;</span><br><span class="line">		<span class="keyword">while</span> (!S_h.isEmpty()) &#123;</span><br><span class="line">			<span class="keyword">if</span> (index == heights.length) &#123;  </span><br><span class="line">				maxarea = Math.max(maxarea, S_h.pop() * (index - S_p.pop()));</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (heights[index] &gt; S_h.peek()) &#123;  <span class="comment">/* 情况3 */</span></span><br><span class="line">					S_h.push(heights[index]);</span><br><span class="line">					S_p.push(index);</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (heights[index] &lt; S_h.peek()) &#123;  <span class="comment">/* 情况2 */</span></span><br><span class="line">					maxarea = Math.max(maxarea, S_h.pop() * (index - S_p.peek()));</span><br><span class="line">					<span class="keyword">if</span> (S_h.isEmpty() || heights[index] &gt; S_h.peek()) &#123;</span><br><span class="line">						S_h.push(heights[index]);</span><br><span class="line">					&#125; <span class="keyword">else</span> <span class="keyword">if</span> (heights[index] == S_h.peek()) &#123;</span><br><span class="line">				    	S_p.pop();</span><br><span class="line">				    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (heights[index] &lt; S_h.peek()) &#123;</span><br><span class="line">				    	index--;</span><br><span class="line">				    	S_p.pop();</span><br><span class="line">				    &#125;</span><br><span class="line">				&#125;</span><br><span class="line">				index++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> maxarea;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>源代码文件可参见我的Github: <a href="https://github.com/clamli/leetcode/blob/master/Array/Solution%20for%20Largest%20Rectangle%20in%20Histogram.java" target="_blank" rel="noopener">Solution for Largest Rectangle in Histogram.java</a></p>
+<hr>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h1><ul>
+<li><a href="https://www.youtube.com/watch?v=VNbkzsnllsU" target="_blank" rel="noopener">使用栈方法解决最大矩阵问题 (From Youtube)</a></li>
+</ul>
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/03/25/Leetcode-84-直方图中的最大矩形/" class="article-date">
+  <time datetime="2018-03-25T15:32:49.000Z" itemprop="datePublished">2018-03-25</time>
+</a>
+
+        </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+
+          </li>
+        
+        <hr>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2018/04/19/Leetcode-287-Floyd龟兔赛跑算法/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Leetcode 287 Floyd龟兔赛跑算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/19/Spark-in-Python-安装和实例/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Spark in Python 安装和实例</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr>
+      <div id="footerContent" class="footer-content">
+        <p>Fill what’s empty. Empty what’s full. Scratch where it itches.</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
