@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-
-  
   <title>Clamli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Java 基础知识点1.1 面向对象的特性有哪些封装：把对象的属性和行为封装起来，只提供用户可操作属性和行为的接口而隐藏内部数据。 继承：复用已有的属性和行为（父类），添加新的属性和行为（子类）。 多态：程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法在编程时不确定，在程序运行期间才确定。如Parent p = new Child()，p向上转型为Parent类型，除了能够引用">
+  <meta name="description" content="1. Java 基础知识点 1.1 面向对象的特性有哪些 1.2 覆盖（重写）和重载 1.3 抽象类和接口的区别 1.4 Java 和 C++ 的区别 1.5 Java 中的值传递和引用传递 1.6 JDK 中常用的包有哪些 1.7 JDK, JRE 和 JVM 的联系和区别 1.8 Java 中的异常 1.9 Java 中的迭代器   2. Java 常见集合 3. 高并发编程（JUC包）">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Clamli">
 <meta property="og:url" content="http://clamli.github.io/notes/index.html">
 <meta property="og:site_name" content="Clamli">
-<meta property="og:description" content="1. Java 基础知识点1.1 面向对象的特性有哪些封装：把对象的属性和行为封装起来，只提供用户可操作属性和行为的接口而隐藏内部数据。 继承：复用已有的属性和行为（父类），添加新的属性和行为（子类）。 多态：程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法在编程时不确定，在程序运行期间才确定。如Parent p = new Child()，p向上转型为Parent类型，除了能够引用">
+<meta property="og:description" content="1. Java 基础知识点 1.1 面向对象的特性有哪些 1.2 覆盖（重写）和重载 1.3 抽象类和接口的区别 1.4 Java 和 C++ 的区别 1.5 Java 中的值传递和引用传递 1.6 JDK 中常用的包有哪些 1.7 JDK, JRE 和 JVM 的联系和区别 1.8 Java 中的异常 1.9 Java 中的迭代器   2. Java 常见集合 3. 高并发编程（JUC包）">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/jre.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/jdk.png">
@@ -34,74 +32,162 @@
 <meta property="og:image" content="http://clamli.github.io/notes/picture/extentstype.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/死锁.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/等待图.png">
-<meta property="og:updated_time" content="2019-02-02T22:12:54.955Z">
+<meta property="og:updated_time" content="2019-02-02T22:47:52.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Clamli">
-<meta name="twitter:description" content="1. Java 基础知识点1.1 面向对象的特性有哪些封装：把对象的属性和行为封装起来，只提供用户可操作属性和行为的接口而隐藏内部数据。 继承：复用已有的属性和行为（父类），添加新的属性和行为（子类）。 多态：程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法在编程时不确定，在程序运行期间才确定。如Parent p = new Child()，p向上转型为Parent类型，除了能够引用">
+<meta name="twitter:description" content="1. Java 基础知识点 1.1 面向对象的特性有哪些 1.2 覆盖（重写）和重载 1.3 抽象类和接口的区别 1.4 Java 和 C++ 的区别 1.5 Java 中的值传递和引用传递 1.6 JDK 中常用的包有哪些 1.7 JDK, JRE 和 JVM 的联系和区别 1.8 Java 中的异常 1.9 Java 中的迭代器   2. Java 常见集合 3. 高并发编程（JUC包）">
 <meta name="twitter:image" content="http://clamli.github.io/notes/picture/jre.png">
   
   
     <link rel="icon" href="/images/favicon.jpg">
   
+  <link rel="stylesheet" href="/css/typing.css">
+  <link rel="stylesheet" href="/css/donate.css">
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
 </head>
 </html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Clamli</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-          <a class="main-nav-link" href="/notes">Notes</a>
-        
-          <a class="main-nav-link" href="/projects">Projects</a>
-        
-          <a class="main-nav-link" href="/resume">Resume</a>
-        
-          <a class="main-nav-link" href="/about">About</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://clamli.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="page-" class="article article-type-page" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/notes/index.html" class="article-date">
-  <time datetime="2019-02-02T22:13:22.519Z" itemprop="datePublished">2019-02-02</time>
-</a>
+  
     
-  </div>
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="page-" class="article article-type-page" itemscope="" itemprop="blogPost">
+  <header id="header" class="header">
+    <div class="mobile-nav">
+      <h1 class="nickname">Boyi Li</h1>
+      <a id="menu">
+        &#9776; Menu
+      </a>
+    </div>
+    
+        <nav id="main-nav" class="main-nav nav-left">
+    
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/notes">Notes</a>
+    
+      <a class="main-nav-link" href="/projects">Projects</a>
+    
+      <a class="main-nav-link" href="/resume">Resume</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+</header>
+
+  <hr>
   <div class="article-inner">
     
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="article-entry typo" itemprop="articleBody">
       
-        <h2><span id="1-java-基础知识点">1. Java 基础知识点</span></h2><h4><span id="11-面向对象的特性有哪些">1.1 面向对象的特性有哪些</span></h4><p>封装：把对象的<strong>属性</strong>和<strong>行为</strong>封装起来，只提供用户可操作属性和行为的接口而隐藏内部数据。</p>
+        <!-- toc -->
+<ul>
+<li><a href="#1-java-基础知识点">1. Java 基础知识点</a><ul>
+<li><a href="#11-面向对象的特性有哪些">1.1 面向对象的特性有哪些</a></li>
+<li><a href="#12-覆盖重写和重载">1.2 覆盖（重写）和重载</a></li>
+<li><a href="#13-抽象类和接口的区别">1.3 抽象类和接口的区别</a></li>
+<li><a href="#14-java-和-c-的区别">1.4 Java 和 C++ 的区别</a></li>
+<li><a href="#15-java-中的值传递和引用传递">1.5 Java 中的值传递和引用传递</a></li>
+<li><a href="#16-jdk-中常用的包有哪些">1.6 JDK 中常用的包有哪些</a></li>
+<li><a href="#17-jdk-jre-和-jvm-的联系和区别">1.7 JDK, JRE 和 JVM 的联系和区别</a></li>
+<li><a href="#18-java-中的异常">1.8 Java 中的异常</a></li>
+<li><a href="#19-java-中的迭代器">1.9 Java 中的迭代器</a></li>
+</ul>
+</li>
+<li><a href="#2-java-常见集合">2. Java 常见集合</a></li>
+<li><a href="#3-高并发编程juc包">3. 高并发编程（JUC包）</a><ul>
+<li><a href="#31-多线程和单线程的区别和联系">3.1 多线程和单线程的区别和联系</a></li>
+<li><a href="#32-如何指定多个线程的执行顺序">3.2 如何指定多个线程的执行顺序</a></li>
+<li><a href="#33-线程和进程的区别">3.3 线程和进程的区别</a></li>
+<li><a href="#34-多线程产生死锁的4个必要条件">3.4 多线程产生死锁的4个必要条件</a></li>
+<li><a href="#35-sleep和waitn-wait的区别">3.5 <em>sleep()</em>和<em>wait(n)</em>, <em>wait()</em>的区别</a></li>
+<li><a href="#36-synchronized关键字">3.6 <em>synchronized</em>关键字</a></li>
+<li><a href="#37-volatile关键字">3.7 <em>volatile</em>关键字</a></li>
+<li><a href="#38-threadlocal线程局部变量关键字">3.8 <em>ThreadLocal</em>（线程局部变量）关键字</a></li>
+<li><a href="#39-atomic关键字">3.9 <em>Atomic</em>关键字</a></li>
+<li><a href="#310-线程池">3.10 线程池</a></li>
+</ul>
+</li>
+<li><a href="#4-jvm-内存管理">4. JVM 内存管理</a><ul>
+<li><a href="#41-jvm-内存划分">4.1 JVM 内存划分</a></li>
+<li><a href="#42-类似-xms-xmn这些参数的含义">4.2 类似-Xms, -Xmn这些参数的含义</a></li>
+<li><a href="#43-垃圾回收算法">4.3 垃圾回收算法</a></li>
+<li><a href="#44-root搜索算法中那些可以作为root">4.4 <em>root</em>搜索算法中，那些可以作为<em>root</em></a></li>
+<li><a href="#45-gc什么时候开始">4.5 <em>GC</em>什么时候开始</a></li>
+<li><a href="#46-内存泄漏和内存溢出">4.6 内存泄漏和内存溢出</a></li>
+</ul>
+</li>
+<li><a href="#5-java-8-知识点">5. Java 8 知识点</a><ul>
+<li><a href="#51-hashmap的底层实现有变化">5.1 HashMap的底层实现有变化</a></li>
+<li><a href="#52-jvm内存管理方面由元空间替代了永久代">5.2 JVM内存管理方面，由元空间替代了永久代</a></li>
+<li><a href="#53-lambda表达式">5.3 Lambda表达式</a></li>
+<li><a href="#54-函数式接口">5.4 函数式接口</a></li>
+<li><a href="#55-引入重复注解">5.5 引入重复注解</a></li>
+<li><a href="#56-接口中可以实现方法default方法">5.6 接口中可以实现方法default方法</a></li>
+<li><a href="#57-注解的使用场景拓宽">5.7 注解的使用场景拓宽</a></li>
+<li><a href="#58-新的包javatime包">5.8 新的包java.time包</a></li>
+</ul>
+</li>
+<li><a href="#6-网络协议相关">6. 网络协议相关</a><ul>
+<li><a href="#61-三次握手四次挥手">6.1 三次握手，四次挥手</a></li>
+<li><a href="#62-滑动窗口机制">6.2 滑动窗口机制</a></li>
+<li><a href="#63-拥塞避免机制">6.3 拥塞避免机制</a></li>
+<li><a href="#64-浏览器中输入wwwxxxcom后发生了什么">6.4 浏览器中输入：“www.xxx.com”后发生了什么？</a></li>
+<li><a href="#65-常见的http状态码">6.5 常见的HTTP状态码</a></li>
+<li><a href="#66-tcp和udp的区别">6.6 TCP和UDP的区别</a></li>
+<li><a href="#67-tcp的重传机制">6.7 TCP的重传机制</a></li>
+</ul>
+</li>
+<li><a href="#7-数据库相关">7. 数据库相关</a><ul>
+<li><a href="#71-mysql和mongodb的区别有哪些如何选择">7.1 MySQL和MongoDB的区别有哪些？如何选择？</a></li>
+<li><a href="#72-mongodb的优缺点有哪些">7.2 MongoDB的优缺点有哪些？</a></li>
+<li><a href="#73-事务">7.3 事务</a></li>
+<li><a href="#74-事务的四个重要特性acid">7.4 事务的四个重要特性（ACID）</a></li>
+<li><a href="#75-事务的隔离级别有哪几种">7.5 事务的隔离级别有哪几种？</a></li>
+<li><a href="#76-数据库中的锁有哪几种">7.6 数据库中的锁有哪几种？</a></li>
+<li><a href="#77-数据库的索引有什么作用底层数据结构是什么为什么使用这种数据结构">7.7 数据库的索引有什么作用？底层数据结构是什么，为什么使用这种数据结构？</a></li>
+<li><a href="#78-myisam和innodb的区别有哪些">7.8 MyISAM和InnoDB的区别有哪些？</a></li>
+<li><a href="#79-数据库中的关键字">7.9 数据库中的关键字</a></li>
+<li><a href="#710-数据库范式">7.10 数据库范式</a></li>
+<li><a href="#711-mysql和sql-server用法上的区别">7.11 MySQL和SQL Server用法上的区别</a></li>
+<li><a href="#712-limit关键字的使用">7.12 limit关键字的使用</a></li>
+<li><a href="#713-memcached是什么">7.13 Memcached是什么</a></li>
+<li><a href="#714-数据库的-pages-和-extents">7.14 数据库的 Pages 和 Extents</a></li>
+<li><a href="#715-什么是关系型数据库">7.15 什么是关系型数据库？</a></li>
+</ul>
+</li>
+<li><a href="#8-操作系统相关">8. 操作系统相关</a><ul>
+<li><a href="#81-进程死锁">8.1 进程死锁</a></li>
+</ul>
+</li>
+<li><a href="#9-mvc框架相关">9. MVC框架相关</a><ul>
+<li><a href="#91-spring">9.1 Spring</a></li>
+</ul>
+</li>
+<li><a href="#10-大数据相关">10. 大数据相关</a><ul>
+<li><a href="#101-kafka基本特性">10.1 KafKa基本特性</a></li>
+<li><a href="#102-核心概念">10.2 核心概念</a></li>
+</ul>
+</li>
+<li><a href="#11-linux命令相关">11. Linux命令相关</a><ul>
+<li><a href="#111-grep-sed-awk">11.1 grep, sed, awk</a></li>
+<li><a href="#112-文件和目录">11.2 文件和目录</a></li>
+<li><a href="#113-处理文件方面的命令touch-cp-ln-mv-rm">11.3 处理文件方面的命令：touch, cp, ln, mv, rm</a></li>
+<li><a href="#114-处理目录方面的命令mkdir">11.4 处理目录方面的命令：mkdir</a></li>
+<li><a href="#115-查看文件内容file-cat-more-less-tail-head">11.5 查看文件内容：file, cat, more, less, tail, head</a></li>
+<li><a href="#116-监测程序命令ps-top">11.6 监测程序命令：ps, top</a></li>
+<li><a href="#117-压缩数据">11.7 压缩数据</a></li>
+<li><a href="#118-结束进程">11.8 结束进程</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h2><span id="1-java-基础知识点">1. Java 基础知识点</span></h2><h4><span id="11-面向对象的特性有哪些">1.1 面向对象的特性有哪些</span></h4><p>封装：把对象的<strong>属性</strong>和<strong>行为</strong>封装起来，只提供用户可操作属性和行为的接口而隐藏内部数据。</p>
 <p>继承：复用已有的属性和行为（父类），添加新的属性和行为（子类）。</p>
 <p>多态：程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法在编程时不确定，在程序运行期间才确定。如<code>Parent p = new Child()</code>，p向上转型为Parent类型，除了能够引用父类的共性外，还可以使用子类强大的功能。</p>
 <ul>
@@ -711,59 +797,75 @@
 </ul>
 <h4><span id="117-压缩数据">11.7 压缩数据</span></h4><h4><span id="118-结束进程">11.8 结束进程</span></h4>
       
+      
     </div>
     <footer class="article-footer">
-      <a data-url="http://clamli.github.io/notes/index.html" data-id="cjro2er4h000ipohelzfqfdnj" class="article-share-link">Share</a>
-      
-      
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/notes/index.html" class="article-date">
+  <time datetime="2019-02-02T22:47:52.884Z" itemprop="datePublished">2019-02-02</time>
+</a>
+
+        </li>
+        
+        
+        <hr>
+      </ul>
     </footer>
   </div>
   
     
+
   
 </article>
 
-</section>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 Boyi Li<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/notes" class="mobile-nav-link">Notes</a>
-  
-    <a href="/projects" class="mobile-nav-link">Projects</a>
-  
-    <a href="/resume" class="mobile-nav-link">Resume</a>
-  
-    <a href="/about" class="mobile-nav-link">About</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr>
+      <div id="footerContent" class="footer-content">
+        <p>Fill what’s empty. Empty what’s full. Scratch where it itches.</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
 
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
 
 
 
-  </div>
-</body>
+
+
+
+
+    </div>
+  </body>
 </html>
