@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
+  
+
   
   <title>LeetCode 003 的一点思考 | Clamli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -24,45 +26,59 @@
   
     <link rel="icon" href="/images/favicon.jpg">
   
-  <link rel="stylesheet" href="/css/typing.css">
-  <link rel="stylesheet" href="/css/donate.css">
   
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 </html>
-  
-    
-      <body>
-    
-  
-      <div id="container" class="container">
-        <article id="post-LeetCode-003-的一点思考" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <header id="header" class="header">
-    <div class="mobile-nav">
-      <h1 class="nickname">Boyi Li</h1>
-      <a id="menu">
-        &#9776; Menu
-      </a>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Clamli</a>
+      </h1>
+      
     </div>
-    
-        <nav id="main-nav" class="main-nav nav-left">
-    
-    
-      <a class="main-nav-link" href="/">Home</a>
-    
-      <a class="main-nav-link" href="/archives">Archives</a>
-    
-      <a class="main-nav-link" href="/notes">Notes</a>
-    
-      <a class="main-nav-link" href="/projects">Projects</a>
-    
-      <a class="main-nav-link" href="/resume">Resume</a>
-    
-      <a class="main-nav-link" href="/about">About</a>
-    
-  </nav>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/notes">Notes</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/resume">Resume</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://clamli.github.io"></form>
+      </div>
+    </div>
+  </div>
 </header>
-
-  <hr>
+      <div class="outer">
+        <section id="main"><article id="post-LeetCode-003-的一点思考" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/02/LeetCode-003-的一点思考/" class="article-date">
+  <time datetime="2017-09-02T15:47:07.000Z" itemprop="datePublished">2017-09-02</time>
+</a>
+    
+  </div>
   <div class="article-inner">
     
     
@@ -76,16 +92,16 @@
 
       </header>
     
-    <div class="article-entry typo" itemprop="articleBody">
+    <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Qustion"><a href="#Qustion" class="headerlink" title="Qustion:"></a>Qustion:</h3><p>  Given a string, find the length of the longest substring without repeating characters.<br>  Examples:</p>
+        <h3><span id="qustion">Qustion:</span></h3><p>  Given a string, find the length of the longest substring without repeating characters.<br>  Examples:</p>
 <ul>
 <li>Given <code>&quot;abcabcbb&quot;</code>, the answer is <code>&quot;abc&quot;</code>, which the length is 3.</li>
 <li>Given <code>&quot;bbbbb&quot;</code>, the answer is <code>&quot;b&quot;</code>, with the length of 1.</li>
 <li>Given <code>&quot;pwwkew&quot;</code>, the answer is <code>&quot;wke&quot;</code>, with the length of 3.</li>
 </ul>
 <hr>
-<h3 id="Coding"><a href="#Coding" class="headerlink" title="Coding:"></a>Coding:</h3><p>拿到题目我的第一个思路是这是一个可以通过遍历完成的题，因为所有的情况之和明显是O(N^2)的时间复杂度。因此我的第一个方法如下：<a id="more"></a></p>
+<h3><span id="coding">Coding:</span></h3><p>拿到题目我的第一个思路是这是一个可以通过遍历完成的题，因为所有的情况之和明显是O(N^2)的时间复杂度。因此我的第一个方法如下：<a id="more"></a></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr[<span class="number">256</span>];</span><br><span class="line"><span class="built_in">memset</span>(arr, <span class="number">-1</span>, <span class="number">256</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;len; i++) &#123;</span><br><span class="line">	 <span class="keyword">for</span>(j=i; j&lt;len; j++) &#123;</span><br><span class="line">	 	<span class="keyword">if</span> (arr[s[j]-<span class="string">'\0'</span>] != <span class="number">-1</span>) &#123;</span><br><span class="line">	 		i = arr[s[j]-<span class="string">'\0'</span>];</span><br><span class="line">	 		<span class="keyword">if</span>(llen &gt; maxllen)</span><br><span class="line">	 			maxllen = llen;</span><br><span class="line">	 		llen = <span class="number">0</span>;</span><br><span class="line">	 		<span class="built_in">memset</span>(arr, <span class="number">-1</span>, <span class="number">256</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	 		<span class="keyword">break</span>;         <span class="comment">//1</span></span><br><span class="line">	 	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	 		llen++;</span><br><span class="line">	 		arr[s[j]-<span class="string">'\0'</span>] = j;</span><br><span class="line">	 	&#125;</span><br><span class="line">	 &#125;		</span><br><span class="line">	 <span class="keyword">if</span>(j == len) &#123;</span><br><span class="line">	 	<span class="keyword">if</span>(llen &gt; maxllen)</span><br><span class="line">	 		maxllen = llen;</span><br><span class="line">	 	<span class="keyword">break</span>;            <span class="comment">//2</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中为了略微提高一下效率，使用了两个<code>break</code>。第一个是当在以<code>i</code>起始，<code>j</code>结尾的字符串中找到相同的两个字符时，另i直接定位到两个相同字符的前一个字符的后一位上，然后<code>break</code>。这是因为一定不会再出现包含这两个相同字符的子串满足要求，所以可以直接将<code>i</code>的位置后移。第二个是在一轮<code>j</code>的循环结束时，这时如果一直没有碰到过重复出现的字符，则表示从当前的<code>i</code>到结尾的整个子串上都没有重复的字符，所以当前的<code>maxllen</code>已经是全局最优的，这时也可以直接<code>break</code>结束。</p>
 <p>结果在我提交上去这个版本的代码之后，卡在了这题的最后一个测试点上，显示的原因是运行超时。很显然，这样的遍历方法不是题目所期望的。所以就有了下面的一种方法，用动态规划来解决。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!len)</span><br><span class="line">	 <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;len; i++) &#123;</span><br><span class="line">	<span class="keyword">for</span> (j=i<span class="number">-1</span>; j&gt;=last_start; j--) &#123;</span><br><span class="line">	 	<span class="keyword">if</span>(s[j] == s[i]) &#123;  <span class="comment">//1</span></span><br><span class="line">	 		dp[i] = i - j;</span><br><span class="line">	 		last_start = j + <span class="number">1</span>;</span><br><span class="line">	 		<span class="keyword">break</span>;</span><br><span class="line">	 	&#125; <span class="keyword">else</span> <span class="keyword">if</span>(j == last_start) &#123;  <span class="comment">//2</span></span><br><span class="line">	 		dp[i] = dp[i<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">	 	&#125;</span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="keyword">if</span>(dp[i] &gt; maxllen) &#123;</span><br><span class="line">	 	maxllen = dp[i];</span><br><span class="line">	 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -95,41 +111,25 @@
 <p>但当时把这个版本提交上去的时候发现所有测试点都顺利通过，除了最后一个：<br><img src="/images/LeetCode-003/test error.bmp" alt="">如图所示，输出结果应该是95的可是变成了127。调试了半天以后发现原来是错把<code>hash</code>定义为char类型了。<br><img src="/images/LeetCode-003/problem.bmp" alt="">如上图所示，这个时候如果在里面存储如128之类的数字，机器会自动理解成-128(因为是1字节，10000000)，所以导致了错误。因此这个hash的类型必须是int类型。</p>
 <p>完整代码可参见我的Github: <a href="https://github.com/clamli/leetcode/blob/master/l_substring_without_rep.c" target="_blank" rel="noopener">l_substring_without_rep.c</a></p>
 <hr>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h1><ul>
+<h1><span id="reference">Reference:</span></h1><ul>
 <li><a href="http://www.ahathinking.com/archives/123.html" target="_blank" rel="noopener">最长不重复子串</a></li>
 </ul>
 
       
-      
     </div>
     <footer class="article-footer">
-      <ul class="article-meta">
-        <li>
-          <span class="label">Published Date:</span>
-          <a href="/2017/09/02/LeetCode-003-的一点思考/" class="article-date">
-  <time datetime="2017-09-02T15:47:07.000Z" itemprop="datePublished">2017-09-02</time>
-</a>
-
-        </li>
-        
-        
-          <li>
-            <span class="label">Tag:</span>
-            
+      <a data-url="http://clamli.github.io/2017/09/02/LeetCode-003-的一点思考/" data-id="cjro2er2r0000pohe107uy6xx" class="article-share-link">Share</a>
+      
+      
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
 
-
-          </li>
-        
-        <hr>
-      </ul>
     </footer>
   </div>
   
     
-<nav id="article-nav" class="article-nav">
+<nav id="article-nav">
   
-    <a href="/2017/09/13/LeetCode-004-Regular-Expression-Matching/" id="article-nav-newer" class="article-nav-link-wrap newer">
+    <a href="/2017/09/13/LeetCode-004-Regular-Expression-Matching/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -139,60 +139,52 @@
     </a>
   
   
-    <span id="article-nav-older" class="article-nav-link-wrap older"></span>
-  
 </nav>
-
 
   
 </article>
 
-
-
-
-
-
-
-
-
-
+</section>
+        
       </div>
-      
-    <footer id="footer" class="post-footer footer">
-      
-      <hr>
-      <div id="footerContent" class="footer-content">
-        <p>Fill what’s empty. Empty what’s full. Scratch where it itches.</p>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Boyi Li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/notes" class="mobile-nav-link">Notes</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/resume" class="mobile-nav-link">Resume</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
 
-
-      </div>
-    </footer>
-
-      
-
-
-
-
-
-
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/typing.js"></script>
-<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+<script src="/js/script.js"></script>
 
 
 
-
-
-
-
-    </div>
-  </body>
+  </div>
+</body>
 </html>

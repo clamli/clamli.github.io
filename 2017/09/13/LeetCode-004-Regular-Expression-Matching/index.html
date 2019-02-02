@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
+  
+
   
   <title>LeetCode 004 简单的正则语言匹配器 | Clamli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -21,45 +23,59 @@
   
     <link rel="icon" href="/images/favicon.jpg">
   
-  <link rel="stylesheet" href="/css/typing.css">
-  <link rel="stylesheet" href="/css/donate.css">
   
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 </html>
-  
-    
-      <body>
-    
-  
-      <div id="container" class="container">
-        <article id="post-LeetCode-004-Regular-Expression-Matching" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <header id="header" class="header">
-    <div class="mobile-nav">
-      <h1 class="nickname">Boyi Li</h1>
-      <a id="menu">
-        &#9776; Menu
-      </a>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Clamli</a>
+      </h1>
+      
     </div>
-    
-        <nav id="main-nav" class="main-nav nav-left">
-    
-    
-      <a class="main-nav-link" href="/">Home</a>
-    
-      <a class="main-nav-link" href="/archives">Archives</a>
-    
-      <a class="main-nav-link" href="/notes">Notes</a>
-    
-      <a class="main-nav-link" href="/projects">Projects</a>
-    
-      <a class="main-nav-link" href="/resume">Resume</a>
-    
-      <a class="main-nav-link" href="/about">About</a>
-    
-  </nav>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/notes">Notes</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/resume">Resume</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://clamli.github.io"></form>
+      </div>
+    </div>
+  </div>
 </header>
-
-  <hr>
+      <div class="outer">
+        <section id="main"><article id="post-LeetCode-004-Regular-Expression-Matching" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/13/LeetCode-004-Regular-Expression-Matching/" class="article-date">
+  <time datetime="2017-09-13T05:36:29.000Z" itemprop="datePublished">2017-09-13</time>
+</a>
+    
+  </div>
   <div class="article-inner">
     
     
@@ -73,9 +89,9 @@
 
       </header>
     
-    <div class="article-entry typo" itemprop="articleBody">
+    <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Qustion"><a href="#Qustion" class="headerlink" title="Qustion:"></a>Qustion:</h3><p>Implement regular expression matching with support for ‘.’ and ‘*’. <br><br>Examples:</p>
+        <h3><span id="qustion">Qustion:</span></h3><p>Implement regular expression matching with support for ‘.’ and ‘*’. <br><br>Examples:</p>
 <ul>
 <li><code>isMatch(&quot;aa&quot;,&quot;a&quot;) → false</code></li>
 <li><code>isMatch(&quot;aa&quot;,&quot;aa&quot;) → true</code></li>
@@ -86,7 +102,7 @@
 <li><code>isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true</code></li>
 </ul>
 <hr>
-<h3 id="Coding"><a href="#Coding" class="headerlink" title="Coding:"></a>Coding:</h3><p>拿到这道题的时候会有一种似曾相识的感觉，在吴军所著的《代码之美》这本书里，曾经记录了一种简单的，使用递归实现的正则语言匹配器，作者是Rob Pike，他也是《The Practice of Programming》的作者。这个简单的正则语言匹配器用递归实现，具备基本的正则匹配功能：</p>
+<h3><span id="coding">Coding:</span></h3><p>拿到这道题的时候会有一种似曾相识的感觉，在吴军所著的《代码之美》这本书里，曾经记录了一种简单的，使用递归实现的正则语言匹配器，作者是Rob Pike，他也是《The Practice of Programming》的作者。这个简单的正则语言匹配器用递归实现，具备基本的正则匹配功能：</p>
 <ul>
 <li>c 匹配任意的字母c</li>
 <li>.（句点） 匹配任意的单个字符</li>
@@ -111,42 +127,26 @@
 <p>其中len_s/len_p分别表示字符串和规则的长度，ind_s/ind_p分别表示当前dp的下标。这个方法要考虑的情况比较多，但是时间复杂度更优秀。</p>
 <p>完整代码可参见我的Github: <a href="https://github.com/clamli/leetcode/blob/master/RegularExprMatching.c" target="_blank" rel="noopener">RegularExprMatching.c</a></p>
 <hr>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h2><ul>
+<h2><span id="reference">Reference:</span></h2><ul>
 <li><a href="https://book.douban.com/subject/3224524/" target="_blank" rel="noopener">代码之美</a></li>
 <li><a href="http://www.cnblogs.com/grandyang/p/4461713.html" target="_blank" rel="noopener">[LeetCode] Regular Expression Matching 正则表达式匹配 </a></li>
 </ul>
 
       
-      
     </div>
     <footer class="article-footer">
-      <ul class="article-meta">
-        <li>
-          <span class="label">Published Date:</span>
-          <a href="/2017/09/13/LeetCode-004-Regular-Expression-Matching/" class="article-date">
-  <time datetime="2017-09-13T05:36:29.000Z" itemprop="datePublished">2017-09-13</time>
-</a>
-
-        </li>
-        
-        
-          <li>
-            <span class="label">Tag:</span>
-            
+      <a data-url="http://clamli.github.io/2017/09/13/LeetCode-004-Regular-Expression-Matching/" data-id="cjro2er320005pohe8pjujvtt" class="article-share-link">Share</a>
+      
+      
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
 
-
-          </li>
-        
-        <hr>
-      </ul>
     </footer>
   </div>
   
     
-<nav id="article-nav" class="article-nav">
+<nav id="article-nav">
   
-    <a href="/2017/10/19/Spark-in-Python-安装和实例/" id="article-nav-newer" class="article-nav-link-wrap newer">
+    <a href="/2017/10/19/Spark-in-Python-安装和实例/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -156,63 +156,57 @@
     </a>
   
   
-    <a href="/2017/09/02/LeetCode-003-的一点思考/" id="article-nav-older" class="article-nav-link-wrap older">
+    <a href="/2017/09/02/LeetCode-003-的一点思考/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">LeetCode 003 的一点思考</div>
     </a>
   
 </nav>
 
-
   
 </article>
 
-
-
-
-
-
-
-
-
-
+</section>
+        
       </div>
-      
-    <footer id="footer" class="post-footer footer">
-      
-      <hr>
-      <div id="footerContent" class="footer-content">
-        <p>Fill what’s empty. Empty what’s full. Scratch where it itches.</p>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Boyi Li<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/notes" class="mobile-nav-link">Notes</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/resume" class="mobile-nav-link">Resume</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
 
-
-      </div>
-    </footer>
-
-      
-
-
-
-
-
-
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/typing.js"></script>
-<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+<script src="/js/script.js"></script>
 
 
 
-
-
-
-
-    </div>
-  </body>
+  </div>
+</body>
 </html>
