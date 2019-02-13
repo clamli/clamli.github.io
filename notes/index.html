@@ -37,10 +37,13 @@
 <meta property="og:image" content="http://clamli.github.io/notes/picture/result4.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/result5.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/result6.png">
+<meta property="og:image" content="http://clamli.github.io/notes/picture/result7.png">
+<meta property="og:image" content="http://clamli.github.io/notes/picture/bloom.png">
+<meta property="og:image" content="http://clamli.github.io/notes/picture/bloomacc.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/死锁.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/等待图.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/LagrangeMultiplier.png">
-<meta property="og:updated_time" content="2019-02-12T22:50:41.543Z">
+<meta property="og:updated_time" content="2019-02-13T02:53:52.113Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Clamli">
 <meta name="twitter:description" content="1. Java 基础知识点 1.1 面向对象的特性有哪些 1.2 覆盖（重写）和重载 1.3 抽象类和接口的区别 1.4 Java 和 C++ 的区别 1.5 Java 中的值传递和引用传递 1.6 JDK 中常用的包有哪些 1.7 JDK, JRE 和 JVM 的联系和区别 1.8 Java 中的异常 1.9 Java 中的迭代器   2. Java 常见集合 3. 高并发编程（JUC包）">
@@ -170,7 +173,8 @@
 <li><a href="#714-数据库的-pages-和-extents">7.14 数据库的 Pages 和 Extents</a></li>
 <li><a href="#715-什么是关系型数据库">7.15 什么是关系型数据库？</a></li>
 <li><a href="#716-数据库的bitmap-indexing">7.16 数据库的bitmap indexing</a></li>
-<li><a href="#717-数据库join">7.17 数据库join</a></li>
+<li><a href="#717-数据库的join">7.17 数据库的join</a></li>
+<li><a href="#718-bloom-filter">7.18 Bloom filter</a></li>
 </ul>
 </li>
 <li><a href="#8-操作系统相关">8. 操作系统相关</a><ul>
@@ -736,13 +740,13 @@
 <li>将向量在任一1之前有多少个0出现做记录，如对100000001000即为0，7，3。</li>
 <li>将0出现的个数进行编码，首先求出该个数有几位，然后将这个位数按照位数减一个1加一个0进行编码，再在后面跟上对该个数的编码。如0，即为0个1加1个0，再加一个0，即为00。同理，7即为2个1加1个0，再加111，为110111。3为1011。最终这个数字的编码为<del>00110111<u>1011</u></del>。<em>Note: 对于原向量最后的0，一般不进行编码，因此上述的编码应为 00110111。</em></li>
 </ul>
-<p>Bitmaps更新</p>
+<p><strong>Bitmaps更新</strong></p>
 <ul>
 <li>当记录被删除时，直接将对应位置为1的向量值置0</li>
 <li>当记录插入时，找到所有属性对应的向量集合，在插入属性值对应的向量末尾加1，非插入属性值向量末尾加0</li>
 <li>当有新的值插入时，在该属性对应向量集合中加入新向量，并赋值</li>
 </ul>
-<h4><span id="717-数据库join">7.17 数据库join</span></h4><p>数据库的join操作是将多个表根据相同属性结合的一种操作，它的结果是一张可以被存储使用的新表。join操作包括<code>INNER JOIN</code>，<code>LEFT OUTER</code>, <code>RIGHT OUTER</code>, <code>FULL OUTER</code>和<code>CROSS</code>。表也可以和自己进行self join（自交，好污~）。</p>
+<h4><span id="717-数据库的join">7.17 数据库的join</span></h4><p>数据库的join操作是将多个表根据相同属性结合的一种操作，它的结果是一张可以被存储使用的新表。join操作包括<code>INNER JOIN</code>，<code>LEFT OUTER</code>, <code>RIGHT OUTER</code>, <code>FULL OUTER</code>和<code>CROSS</code>。表也可以和自己进行self join（自交，好污~）。</p>
 <p>以下的操作均在如下两张表中进行：</p>
 <p><img src="./picture/table.png" alt="drawing" width="450"></p>
 <p><em># Cross join</em>: 产生一张表，包括了第一张表中的所有行和第二张表中的所有行。</p>
@@ -779,6 +783,23 @@
 <blockquote>
 <p>结果：<img src="./picture/result6.png" alt="drawing" width="450"></p>
 </blockquote>
+<p><em># Full outer join:</em> 返回两张表Inner join的结果，同时保留两张表上所有匹配到或没有匹配到的值，没有值的地方填NULL。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> employee <span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> department</span><br><span class="line">  <span class="keyword">ON</span> employee.DepartmentID = department.DepartmentID;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结果：<img src="./picture/result7.png" alt="drawing" width="450"></p>
+</blockquote>
+<h4><span id="718-bloom-filter">7.18 Bloom filter</span></h4><p>Bloom filter是一个概率数据结构，用来测试查询元素是否位于集合中。查询该数据结构的返回值有两个，“可能在集合中”、“一定不在集合中”。</p>
+<p>Bloom filter是一个数组，大小为m比特。对数组定义有k个hash函数，每个hash函数都平均地将集合元素映射到m个位置中的任意一个。k通常是一个远小于m的数字，和插入元素个数有关，k的大小会决定最后的false positive rate。</p>
+<p><img src="./picture/bloom.png" alt="drawing" width="450"></p>
+<p>每当插入一个元素时，将元素送到k个hash函数算出k个位置，并将这k个位置的值都置1。</p>
+<p>当查询元素时，将该元素送到k个hash函数算出k个位置，如果<strong>任意一个位置的值为0</strong>，那么该元素不在集合中；否则，如果所有均为1，那么要么这个元素在集合中，要么这些位是因为其它元素的插入变1。</p>
+<p>使用bloom filter时可以有效减少磁盘访问次数，如下图所示，键值都存储在磁盘上。很多情况下可以直接通过bloom filter获得所查找键是否存在的正确结果，只有少数情况下，bloom filter给出键存在的结果，但是经过查询磁盘会发现该结论是错误的，这会导致少量不必要的磁盘访问。</p>
+<p><img src="./picture/bloomacc.png" alt="drawing" width="450"></p>
+<blockquote>
+<p>Bloom filter的概率背景</p>
+</blockquote>
+<p>假设hash函数选择任意位置的概率相同。如果数组的大小是m，那么某一位置在元素插入的时候没有被某一hash函数置1的概率为<br>$$<br>1 - \frac{1}{m}<br>$$<br>如果hash函数个数为k，hash函数之间没有关联，那么某一位置在元素插入的时候没有被任一hash函数置1的概率是<br>$$<br>\left ( 1 - \frac{1}{m} \right )^{k}<br>$$<br>如果我们插入了n个元素，那么在这n次插入中该位置始终保持0的概率是<br>$$<br>\left ( 1 - \frac{1}{m} \right )^{kn}<br>$$<br>那么该位置为1的概率为<br>$$<br>1 - \left ( 1 - \frac{1}{m} \right )^{kn}<br>$$<br>那么当查询一个元素时，返回该元素可能存在集合中的要求是所有hash函数都返回1，概率为<br>$$<br>\left ( 1 - \left ( 1 - \frac{1}{m} \right )^{kn} \right )^{k} \approx  \left ( 1- e^{-kn/m}\right )^{k}<br>$$<br>当m增加时，false positive的概率减少；当n增加时，false positive的概率增加。</p>
+<p>设$g = kln ( 1- e^{-kn/m})$, 求$g$的导数得<br>$$<br>\frac{\partial g}{\partial k} =ln(1- e^{-kn/m})+\frac{kn}{m}\frac{e^{-kn/m}}{1-e^{-kn/m}}<br>$$<br>因此$k$的最优值为$\frac{m}{n}ln2$.</p>
 <h2><span id="8-操作系统相关">8. 操作系统相关</span></h2><h4><span id="81-进程死锁">8.1 进程死锁</span></h4><p>当一组进程中的每个进程都在等待一个事件，而这一事件只能由这一组进程的另一进程引起，那么这组进程就处于死锁状态。</p>
 <p>如果一个系统中下面4个条件同时满足，那么会引起死锁：</p>
 <ul>
@@ -911,7 +932,7 @@
         <li>
           <span class="label">Published Date:</span>
           <a href="/notes/index.html" class="article-date">
-  <time datetime="2019-02-12T22:50:41.543Z" itemprop="datePublished">2019-02-12</time>
+  <time datetime="2019-02-13T02:53:52.113Z" itemprop="datePublished">2019-02-12</time>
 </a>
 
         </li>
