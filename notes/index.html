@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://clamli.github.io/notes/picture/java-volatile.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/JVM.jpg">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/Java栈.jpg">
-<meta property="og:image" content="http://clamli.github.io/notes/picture/IsolationLevel.png">
+<meta property="og:image" content="http://clamli.github.io/notes/picture/isolationLevel.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/B+treenode.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/leafnodeindex.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/B+tree.png">
@@ -43,7 +43,7 @@
 <meta property="og:image" content="http://clamli.github.io/notes/picture/死锁.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/等待图.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/LagrangeMultiplier.png">
-<meta property="og:updated_time" content="2019-02-13T02:53:52.113Z">
+<meta property="og:updated_time" content="2019-02-15T05:19:57.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Clamli">
 <meta name="twitter:description" content="1. Java 基础知识点 1.1 面向对象的特性有哪些 1.2 覆盖（重写）和重载 1.3 抽象类和接口的区别 1.4 Java 和 C++ 的区别 1.5 Java 中的值传递和引用传递 1.6 JDK 中常用的包有哪些 1.7 JDK, JRE 和 JVM 的联系和区别 1.8 Java 中的异常 1.9 Java 中的迭代器   2. Java 常见集合 3. 高并发编程（JUC包）">
@@ -392,7 +392,7 @@
 <li><em>List</em>接口</li>
 </ul>
 </li>
-<li><em>Map</em>接口的实现类主要有：<a href="#2.1"><em>HashMap</em></a>, <a href="(#2.2"><em>TreeMap</em></a>), <a href="#2.3"><em>ConcurrentHashMap</em></a>, <a href="#2.4"><em>HashTable</em></a>以及<a href="#2.5"><em>Properties</em></a>等</li>
+<li><em>Map</em>接口的实现类主要有：<a href="#2.1"><em>HashMap</em></a>, <a href="#2.2"><em>TreeMap</em></a>, <a href="#2.3"><em>ConcurrentHashMap</em></a>, <a href="#2.4"><em>HashTable</em></a>以及<a href="#2.5"><em>Properties</em></a>等</li>
 <li><em>Set</em>接口的实现类主要有：<a href="#2.6"><em>HashSet</em></a>, <a href="#2.7"><em>TreeSet</em></a>, <a href="#2.8"><em>LinkedHashSet</em></a>等</li>
 <li><em>List</em>接口的实现类主要有：<a href="#2.9"><em>ArrayList</em></a>, <a href="#2.10"><em>LinkedList</em></a>, <a href="#2.11"><em>Stack</em></a>以及<a href="#2.12"><em>Vector</em></a>等</li>
 </ul>
@@ -610,7 +610,7 @@
 <li>幻读：是指当事务不是独立执行时发生的一种现象。比如事务A 将 T表中所有工资不到 10000元 的员工的工资改为10000元，在事务A执行结束尚未提交时，事务B又插入了一条（或删除操作）工资不满10000元的员工记录，然后再提交事务A，事务B。事务A好像发生了幻觉，没有操作成功一样，这是因为”可重复读“锁定的是已经读取的记录，而不是锁定整张表（或者超出读取范围的数据），可重复读限制了事务本身涉及数据的update行为，但是无法限制事务自身以外的数据。我们可以使用表锁或者范围锁。</li>
 </ul>
 <p><strong>不同隔离级别对应的问题</strong></p>
-<p><img src="./picture/IsolationLevel.png" alt="drawing" width="600"></p>
+<p><img src="./picture/isolationLevel.png" alt="drawing" width="600"></p>
 <h4><span id="76-数据库中的锁有哪几种">7.6 数据库中的锁有哪几种？</span></h4><p><strong>锁的类型</strong></p>
 <ul>
 <li><strong>行级锁</strong><ul>
@@ -765,7 +765,7 @@
 <p>结果：<img src="./picture/result3.png" alt="drawing" width="500"></p>
 </blockquote>
 <p><strong>Equi-join</strong></p>
-<p>Equi-join是Inner join的一种，它要求约束条件必须是等式（<code>==</code>），因此它可以省略写成如下形式</p>
+<p>Equi-join是Inner join的一种，它要求约束条件必须是等式（<code>=</code>），因此它可以省略写成如下形式</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> employee <span class="keyword">INNER</span> <span class="keyword">JOIN</span> department <span class="keyword">USING</span> (DepartmentID);</span><br></pre></td></tr></table></figure>
 <p><strong>Natural join</strong></p>
 <p>Natural join是Equi-join的一种，它结合两张表在相同属性上值相等的所有行，且只保留两个相同属性中的一个。</p>
@@ -932,7 +932,7 @@
         <li>
           <span class="label">Published Date:</span>
           <a href="/notes/index.html" class="article-date">
-  <time datetime="2019-02-13T02:53:52.113Z" itemprop="datePublished">2019-02-12</time>
+  <time datetime="2019-02-15T05:19:57.654Z" itemprop="datePublished">2019-02-14</time>
 </a>
 
         </li>
