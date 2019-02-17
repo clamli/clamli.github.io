@@ -43,7 +43,7 @@
 <meta property="og:image" content="http://clamli.github.io/notes/picture/死锁.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/等待图.png">
 <meta property="og:image" content="http://clamli.github.io/notes/picture/LagrangeMultiplier.png">
-<meta property="og:updated_time" content="2019-02-15T05:19:57.654Z">
+<meta property="og:updated_time" content="2019-02-17T05:43:28.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Clamli">
 <meta name="twitter:description" content="1. Java 基础知识点 1.1 面向对象的特性有哪些 1.2 覆盖（重写）和重载 1.3 抽象类和接口的区别 1.4 Java 和 C++ 的区别 1.5 Java 中的值传递和引用传递 1.6 JDK 中常用的包有哪些 1.7 JDK, JRE 和 JVM 的联系和区别 1.8 Java 中的异常 1.9 Java 中的迭代器   2. Java 常见集合 3. 高并发编程（JUC包）">
@@ -207,6 +207,8 @@
 </li>
 <li><a href="#13-机器学习相关">13. 机器学习相关</a><ul>
 <li><a href="#131-拉格朗日乘子法">13.1 拉格朗日乘子法</a></li>
+<li><a href="#132-quasi-monte-carloqmc-sampling">13.2 Quasi Monte Carlo(QMC) Sampling</a></li>
+<li><a href="#133-laplacian-of-gaussian高斯拉普拉斯算子">13.3 Laplacian of Gaussian（高斯拉普拉斯算子）</a></li>
 </ul>
 </li>
 </ul>
@@ -921,6 +923,48 @@
 <li>$f$函数往任何方向均不改变大小</li>
 </ul>
 <p>因此我们可以有等式<br>$$<br>\bigtriangledown _{x,y}f = \lambda\bigtriangledown _{x,y}g<br>$$<br>也就是$\bigtriangledown _{x_{1},…,x_{n}}L(x_{1},…,x_{n},\lambda)=0$. 求解方程得到$x_{1},…,x_{n}$代入原方程可求得最优解。</p>
+<h4><span id="132-quasi-monte-carloqmc-sampling">13.2 Quasi Monte Carlo(QMC) Sampling</span></h4><p>假设我们想要在一个d维空间采样点，并使间隔不要过大，常用的方法包括最Naive的常规隔间采样，更好的方法有Chain Monte Carlo(MCMC)或者是Quasi Monte Carlo(QMC)方法。</p>
+<p><strong>Halton sequence</strong></p>
+<blockquote>
+<p>In statistics, Halton sequences are sequences used to generate points in space for numerical methods such as Monte Carlo simulations.</p>
+</blockquote>
+<p>在进入正题之前，首先要介绍一下Halton sequence。它是用来产生一系列随机点所使用的算法，尽管这种计算点的方法是确定的，但是它能产生比伪随机序列更“随机”的序列。</p>
+<p>生成序列的步骤主要有两步</p>
+<ul>
+<li>确定基底</li>
+<li>对不同基底分别计算不同的序列</li>
+</ul>
+<p>确定基底的步骤要保证所选基底互质。比如我们可以生成基底为2和3的序列。</p>
+<p>计算基底的方法又分以下三步</p>
+<ul>
+<li>确定对应位置下标（从1开始）的二进制表示</li>
+<li>将二进制表示倒过来，置于小数点后生成新的二进制</li>
+<li>计算新的二进制所对应值即为当前点的值</li>
+</ul>
+<p>如我们以2为基底举例，要生成第6个位置的值，6的二进制表示为$110_{2}$, 倒转并置于小数点后为$0.011_{2}$, 对应的十进制数为$0.011_{2} = 0 <em> 2^{-1}+1</em>2^{-2}+1*2^{-3}=\frac{3}{8}$. 所以对应位置的值为$\frac{3}{8}$。</p>
+<p>以此我们可以得到2对应的序列为</p>
+<blockquote>
+<p>$\frac{1}{2}, \frac{1}{4}, \frac{3}{4}, \frac{1}{8}, \frac{5}{8}, \frac{7}{8}, \frac{1}{16}, \frac{9}{16}, …$</p>
+</blockquote>
+<p>3对应的序列为</p>
+<blockquote>
+<p>$\frac{1}{3}, \frac{2}{3}, \frac{1}{9}, \frac{4}{9}, \frac{7}{9}, \frac{2}{9}, \frac{5}{9}, \frac{8}{9}, \frac{1}{27}, …$</p>
+</blockquote>
+<p>将两个序列合起来就是二维空间上的一个随机序列。</p>
+<p><strong>Quasi Monte Carlo Method</strong></p>
+<blockquote>
+<p>quasi-Monte Carlo method uses low-discrepancy sequences (e.g. Halton sequence), which is in contrast to the regular <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method" target="_blank" rel="noopener">Monte Carlo method</a> or <a href="https://en.wikipedia.org/wiki/Monte_Carlo_integration" target="_blank" rel="noopener">Monte Carlo integration</a> that based on sequences of <a href="https://en.wikipedia.org/wiki/Pseudorandom" target="_blank" rel="noopener">pseudorandom</a> numbers. </p>
+</blockquote>
+<p><em>QMC旨在解决什么问题呢？</em></p>
+<blockquote>
+<p>QMC试图用数学的方法，去估计一个函数的积分，并用一系列点所对应的函数值的平均值来表示它</p>
+</blockquote>
+<p>数学一点说，即解决以下问题<br>$$<br>\int_{\left [ 0,1 \right ]^{s}}^{}f(u)du\approx \frac{1}{N}\sum_{i=1}^{N}f(x_{i})<br>$$<br><strong>Approximation error bounds of quasi-Monte Carlo</strong></p>
+<p>估计误差可以表示为如下<br>$$<br>\varepsilon =\left | \int_{\left [ 0,1 \right ]^{s}}^{}f(u)du- \frac{1}{N}\sum_{i=1}^{N}f(x_{i}) \right |<br>$$<br>这个误差有上限，$\varepsilon \leq V(f)D_{N}$,</p>
+<p>其中$V(f)$是函数的Hardy–Krause variation（有空写），$D_{N}$可以表示为如下形式<br>$$<br>D_{N} = sup_{Q \subseteq [0,1]^s}\left | \frac{number\ of\ points\ in\ Q}{N} - volume(Q) \right |<br>$$<br>其中$Q$是边和坐标轴平行的矩阵，$N$就是我们用随机序列生成算法产生的$N$个$d$维点。</p>
+<h4><span id="133-laplacian-of-gaussian高斯拉普拉斯算子">13.3 Laplacian of Gaussian（高斯拉普拉斯算子）</span></h4><p>拉普拉斯是对于一张图片的二阶空间导数上各向同性的测量。它可以着重显示图像亮度的变化，可以用来做边缘检测。拉普拉斯接受一张灰度图作为输入，并给出一张灰度图作为输出。</p>
+<p>拉普拉斯算子</p>
+<p>高斯平滑</p>
 <p>对偶问题</p>
 <p>熵</p>
 
@@ -932,7 +976,7 @@
         <li>
           <span class="label">Published Date:</span>
           <a href="/notes/index.html" class="article-date">
-  <time datetime="2019-02-15T05:19:57.654Z" itemprop="datePublished">2019-02-14</time>
+  <time datetime="2019-02-17T05:43:28.844Z" itemprop="datePublished">2019-02-16</time>
 </a>
 
         </li>
